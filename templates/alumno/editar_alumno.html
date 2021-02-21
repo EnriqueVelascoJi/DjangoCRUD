@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %}
+    Registrar un alumno nuevo
+{% endblock titulo %}
+
+
+{% block contenido %}
+    
+    {% include 'includes/nav.html' %}
+    <div class="container p-5">
+        <h1 class="text-center mb-3">Editar alumno : {{alumno.nombre_completo}}</h1>
+        <form method="POST" action="/editar_alumno/{{alumno.id}}" enctype="multipart/form-data"> 
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Nombre completo</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.nombre}}
+                    </div>
+                    <div class="row">
+                        <div id="emailHelp" class="form-text">Si tienes más de un nombre también ponlo</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Apellidos</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.apellidos}}
+                    </div>
+                    <div class="row">
+                        <div class="form-text">Apellido paterno y materno</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Boleta escolar</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.boleta}}
+                    </div>
+                    <div class="row">
+                        <div class="form-text">Recuerda que son 10 digítos númericos</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Escuela</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.escuela}}
+                    </div>
+                    <div class="row">
+                        <div id="emailHelp" class="form-text">Escuela donde estudias actualmente</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Carrera</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.carrera}}
+                    </div>
+                    <div class="row">
+                        <div class="form-text">Carrera donde actualmente estudias</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Género del alumno</label>
+                    </div>
+                    <div class="row ms-1">
+                    {{formulario.sexo}}
+                    </div>
+                    <div class="row">
+                        <div id="emailHelp" class="form-text">
+                            Género del alumno
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="form-label">Descripción de alumno</label>
+                    </div>
+                    <div class="row">
+                    {{formulario.descripcion}}
+                    </div>
+                    <div class="row">
+                        <div class="form-text">Datos importantes: excelencia, intercambio, baja temporal, etc.</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row ms-1">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="form-label">Fotografía del alumno</label>
+                            </div>
+                            <div class="row">
+                            {{formulario.avatar}}
+                            </div>
+                            <div class="row">
+                                <div class="form-text">De frente, solo mostrando la cara y lo más nítido posible.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ms-1 mt-3">
+                        <div class="col-6">
+                            <div class="row ms-1">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- Errores -->
+                    <div class="row ms-1 mt-3">
+                        <div class="col">
+                            {% ifnotequal metodo 0  %}
+                        
+                            <div class="alert alert-danger" role="alert">
+                                {% for campo in formulario %}
+                                    {{ campo.errors }}
+                                {% endfor %}
+                            </div>
+                            {% endifnotequal %}
+                        </div>
+                    </div>
+                
+            </div>
+        </form>
+
+        
+    </div>
+    
+    
+        
+{% endblock contenido %}
+    
+    

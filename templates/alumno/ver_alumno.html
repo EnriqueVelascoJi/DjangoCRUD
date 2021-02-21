@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block titulo %}
+    Alumno: {{alumno.nombre}}
+{% endblock titulo %}
+
+
+{% block contenido %}
+    {% include 'includes/nav.html' %}
+
+    <div class="container">
+        <div class="row mt-5 mb-5">
+            <h1 class="text-center mb-5">Más sobre el alumn@: {{alumno.nombre_completo}}</h1>
+            <div class="card align-center mx-auto" style="width: 18rem;">
+                <img src="/media/{{alumno.avatar}}" class="card-img-top" alt="{{alumno.avatar}}">
+                <div class="card-body">
+                <h5 class="card-title">{{alumno.nombre_completo}}</h5>
+                <p class="card-text">{{alumno.descripcion}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="fw-bold">Boleta: </span>{{alumno.boleta}}</li>
+                <li class="list-group-item"><span class="fw-bold">Escuela: </span>{{alumno.escuela}}</li>
+                <li class="list-group-item"><span class="fw-bold">Carrera: </span>{{alumno.carrera}}</li>
+                <li class="list-group-item"><span class="fw-bold">Género: </span>{{alumno.get_sexo_display}}</li>
+                </ul>
+                <div class="card-body">
+                <a href="{% url 'alumno_app:listar_alumnos' %}" class="card-link">Regresar al listado de alumnos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock contenido %}
+    
+    

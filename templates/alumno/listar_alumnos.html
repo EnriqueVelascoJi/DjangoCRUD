@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %}
+    Listar Alumnos
+{% endblock titulo %}
+ 
+
+{% block contenido %}
+
+    {% include 'includes/nav.html' %}
+
+    <div class="container p-5">
+        <h1 class="text-center mb-5">Alumnos registrados</h1>
+        <table class="table table-striped mx-auto">
+            <thead>
+              <tr class="table-warning text-center">
+                <th scope="col">Id</th>
+                <th scope="col">Nombre completo</th>
+                <th scope="col">Boleta</th>
+                <th scope="col">Escuela</th>
+                <th scope="col">Carrera</th>
+                <th scope="col">Género</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                {% for alumno in alumnos %}
+                    <tr>
+                        <th scope="row">{{alumno.id}}</th>
+                        <td>{{alumno.nombre_completo}}</td>
+                        <td>{{alumno.boleta}}</td>
+                        <td>{{alumno.escuela}}</td>
+                        <td>{{alumno.carrera}}</td>
+                        <td>{{alumno.sexo}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form action="/editar_alumno/{{alumno.id}}" method="GET">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/eliminar_alumno/{{alumno.id}}" method="POST">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/ver_alumno/{{alumno.id}}" method="GET">
+                                        <button type="submit" class="btn btn-info">Ver más</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    
+              
+              
+            </tbody>
+          </table>
+    </div>
+    
+{% endblock contenido %}
+    
